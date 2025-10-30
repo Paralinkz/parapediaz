@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parapediaz - Paranormal Investigation Encyclopedia</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <h1>📚 Parapediaz</h1>
+                <p class="tagline">The Comprehensive Paranormal Investigation Encyclopedia</p>
+            </div>
+            <nav class="main-nav">
+                <input type="text" id="search-box" placeholder="Search Parapediaz..." />
+                <button id="search-btn">Search</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="main-wrapper">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3>Categories</h3>
+                <ul class="category-list">
+                    <li><a href="#equipment" data-category="equipment">Equipment & Technology</a></li>
+                    <li><a href="#phenomena" data-category="phenomena">Phenomena & Evidence</a></li>
+                    <li><a href="#methodology" data-category="methodology">Methodology & Practice</a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Table of Contents</h3>
+                <ul id="toc" class="toc-list">
+                    <!-- Dynamically populated -->
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Related Terms</h3>
+                <ul id="related-terms" class="related-terms-list">
+                    <!-- Dynamically populated -->
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Article Content -->
+        <main class="article-content">
+            <!-- Article Header -->
+            <article id="article">
+                <div class="article-header">
+                    <h1 id="article-title">EMF (Electromagnetic Field) Meter</h1>
+                    <div class="article-meta">
+                        <span class="category-badge" id="category-badge">Equipment & Technology</span>
+                        <span class="article-id">ID: encyclopedia_001</span>
+                    </div>
+                </div>
+
+                <!-- Alternate Names -->
+                <div class="info-box alternate-names" id="alternate-names-box">
+                    <strong>Also known as:</strong> <span id="alternate-names"></span>
+                </div>
+
+                <!-- Article Body -->
+                <div class="article-body">
+                    <!-- Introduction/Description -->
+                    <section id="description">
+                        <p id="description-text"></p>
+                    </section>
+
+                    <!-- Image (if available) -->
+                    <figure class="article-image" id="article-image-container" style="display: none;">
+                        <img id="article-image" src="" alt="">
+                        <figcaption id="image-caption"></figcaption>
+                    </figure>
+
+                    <!-- History Section -->
+                    <section id="history-section">
+                        <h2>History</h2>
+                        <p id="history-text"></p>
+                    </section>
+
+                    <!-- Technical Specifications -->
+                    <section id="technical-section">
+                        <h2>Technical Specifications</h2>
+                        <p id="technical-text"></p>
+                    </section>
+
+                    <!-- Proper Use -->
+                    <section id="proper-use-section">
+                        <h2>Proper Use</h2>
+                        <p id="proper-use-text"></p>
+                    </section>
+
+                    <!-- Common Misconceptions -->
+                    <section id="misconceptions-section">
+                        <h2>Common Misconceptions</h2>
+                        <div class="warning-box">
+                            <p id="misconceptions-text"></p>
+                        </div>
+                    </section>
+
+                    <!-- Notable Uses -->
+                    <section id="notable-uses-section">
+                        <h2>Notable Uses</h2>
+                        <p id="notable-uses-text"></p>
+                    </section>
+
+                    <!-- Scientific Perspective -->
+                    <section id="scientific-section">
+                        <h2>Scientific Perspective</h2>
+                        <div class="info-box science-box">
+                            <p id="scientific-text"></p>
+                        </div>
+                    </section>
+
+                    <!-- Safety Considerations -->
+                    <section id="safety-section">
+                        <h2>Safety Considerations</h2>
+                        <div class="warning-box safety-box">
+                            <p id="safety-text"></p>
+                        </div>
+                    </section>
+
+                    <!-- See Also -->
+                    <section id="see-also-section">
+                        <h2>See Also</h2>
+                        <ul id="see-also-list"></ul>
+                    </section>
+                </div>
+            </article>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2024 Parapediaz. All rights reserved. | <a href="#about">About</a> | <a href="#contribute">Contribute</a> | <a href="#disclaimer">Disclaimer</a></p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
