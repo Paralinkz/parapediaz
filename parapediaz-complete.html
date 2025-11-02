@@ -986,20 +986,27 @@ function performSearch() {
 
 function displaySearchResultsPage(results, searchTerm) {
     const articleContent = document.querySelector('.article-content');
-    
-    // Clear the content first
     articleContent.innerHTML = '';
     
-    // Create header
     const headerDiv = document.createElement('div');
     headerDiv.className = 'article-header';
-    headerDiv.innerHTML = '<h1 id="article-title">Search Results for "' + searchTerm + '"</h1>' +
-                          '<div class="article-meta">' +
-                          '<span class="category-badge">Found ' + results.length + ' results</span>' +
-                          '</div>';
+    
+    const titleH1 = document.createElement('h1');
+    titleH1.id = 'article-title';
+    titleH1.textContent = 'Search Results for "' + searchTerm + '"';
+    
+    const metaDiv = document.createElement('div');
+    metaDiv.className = 'article-meta';
+    
+    const badge = document.createElement('span');
+    badge.className = 'category-badge';
+    badge.textContent = 'Found ' + results.length + ' results';
+    
+    metaDiv.appendChild(badge);
+    headerDiv.appendChild(titleH1);
+    headerDiv.appendChild(metaDiv);
     articleContent.appendChild(headerDiv);
     
-    // Create body
     const bodyDiv = document.createElement('div');
     bodyDiv.className = 'article-body';
     
@@ -1007,54 +1014,66 @@ function displaySearchResultsPage(results, searchTerm) {
     intro.textContent = 'Click on any result below to view the full article:';
     bodyDiv.appendChild(intro);
     
-    // Create result items
-    results.forEach(result => {
+    for (let i = 0; i < results.length; i++) {
+        const result = results[i];
+        const articleId = result.id;  // Store ID in a variable
+        
         const resultDiv = document.createElement('div');
         resultDiv.className = 'search-result-item';
-        resultDiv.style.cssText = 'margin: 20px 0; padding: 15px; border: 1px solid #c8ccd1; border-radius: 4px; cursor: pointer; transition: background-color 0.2s;';
+        resultDiv.style.margin = '20px 0';
+        resultDiv.style.padding = '15px';
+        resultDiv.style.border = '1px solid #c8ccd1';
+        resultDiv.style.borderRadius = '4px';
+        resultDiv.style.cursor = 'pointer';
+        resultDiv.style.backgroundColor = 'white';
+        resultDiv.setAttribute('data-article-id', articleId);  // Store ID as data attribute
         
         const title = document.createElement('h3');
-        title.style.cssText = 'color: #2563eb; margin-bottom: 5px;';
+        title.style.color = '#2563eb';
+        title.style.marginBottom = '5px';
         title.textContent = result.term;
         
         const category = document.createElement('p');
-        category.style.cssText = 'color: #666; font-size: 14px; margin-bottom: 8px;';
-        category.innerHTML = '<strong>Category:</strong> ' + result.category;
+        category.style.color = '#666';
+        category.style.fontSize = '14px';
+        category.style.marginBottom = '8px';
+        
+        const catStrong = document.createElement('strong');
+        catStrong.textContent = 'Category: ';
+        category.appendChild(catStrong);
+        category.appendChild(document.createTextNode(result.category));
         
         const description = document.createElement('p');
-        description.style.cssText = 'font-size: 14px;';
+        description.style.fontSize = '14px';
         description.textContent = result.description.substring(0, 200) + '...';
         
         resultDiv.appendChild(title);
         resultDiv.appendChild(category);
         resultDiv.appendChild(description);
         
-        // Add click handler with explicit article ID capture
-        (function(articleId) {
-            resultDiv.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                console.log('Search result clicked, loading:', articleId);
-                
-                // Force a slight delay to ensure DOM is ready
-                setTimeout(function() {
-                    loadArticle(articleId);
-                }, 10);
-            });
-        })(result.id);
-        
-        // Add hover effects
-        resultDiv.addEventListener('mouseenter', function() {
-            this.style.backgroundColor = '#f0f7ff';
-        });
-        resultDiv.addEventListener('mouseleave', function() {
-            this.style.backgroundColor = 'white';
-        });
-        
         bodyDiv.appendChild(resultDiv);
-    });
+    }
     
     articleContent.appendChild(bodyDiv);
+    
+    // Add click handlers AFTER all elements are in the DOM
+    const allResultDivs = document.querySelectorAll('.search-result-item');
+    allResultDivs.forEach(function(div) {
+        div.addEventListener('click', function() {
+            const id = this.getAttribute('data-article-id');
+            console.log('Clicking on article:', id);
+            loadArticle(id);
+        });
+        
+        div.addEventListener('mouseenter', function() {
+            this.style.backgroundColor = '#f0f7ff';
+        });
+        
+        div.addEventListener('mouseleave', function() {
+            this.style.backgroundColor = 'white';
+        });
+    });
+    
     window.scrollTo(0, 0);
 }
         // Export function for adding more articles dynamically
