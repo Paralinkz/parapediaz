@@ -372,8 +372,8 @@
             <nav class="main-nav">
                 <input type="text" id="search-box" placeholder="Search Parapediaz..." />
                 <button id="search-btn">Search</button>
-                <button id="test-btn" style="padding: 10px 25px; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">Test Load Article</button>            </nav>
-        </nav>
+                <button id="test-btn" style="padding: 10px 25px; background-color: #dc3545; color: white; border: none; border-radius: 4px; cursor: pointer;">Test Load Article</button>
+            </nav>
         </div>
     </header>
 
@@ -1011,7 +1011,6 @@ function displaySearchResultsPage(results, searchTerm) {
     results.forEach(result => {
         const resultDiv = document.createElement('div');
         resultDiv.className = 'search-result-item';
-        resultDiv.setAttribute('data-article-id', result.id);
         resultDiv.style.cssText = 'margin: 20px 0; padding: 15px; border: 1px solid #c8ccd1; border-radius: 4px; cursor: pointer; transition: background-color 0.2s;';
         
         const title = document.createElement('h3');
