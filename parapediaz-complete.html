@@ -985,7 +985,13 @@ function performSearch() {
 }
 
 function displaySearchResultsPage(results, searchTerm) {
+    console.log('=== displaySearchResultsPage called ===');
+    console.log('Number of results:', results.length);
+    console.log('Search term:', searchTerm);
+    
     const articleContent = document.querySelector('.article-content');
+    console.log('Article content element:', articleContent);
+    
     articleContent.innerHTML = '';
     
     const headerDiv = document.createElement('div');
@@ -1016,7 +1022,7 @@ function displaySearchResultsPage(results, searchTerm) {
     
     for (let i = 0; i < results.length; i++) {
         const result = results[i];
-        const articleId = result.id;  // Store ID in a variable
+        console.log('Creating result item:', result.term, 'ID:', result.id);
         
         const resultDiv = document.createElement('div');
         resultDiv.className = 'search-result-item';
@@ -1026,7 +1032,7 @@ function displaySearchResultsPage(results, searchTerm) {
         resultDiv.style.borderRadius = '4px';
         resultDiv.style.cursor = 'pointer';
         resultDiv.style.backgroundColor = 'white';
-        resultDiv.setAttribute('data-article-id', articleId);  // Store ID as data attribute
+        resultDiv.setAttribute('data-article-id', result.id);
         
         const title = document.createElement('h3');
         title.style.color = '#2563eb';
@@ -1055,25 +1061,38 @@ function displaySearchResultsPage(results, searchTerm) {
     }
     
     articleContent.appendChild(bodyDiv);
+    console.log('All result items added to DOM');
     
     // Add click handlers AFTER all elements are in the DOM
     const allResultDivs = document.querySelectorAll('.search-result-item');
-    allResultDivs.forEach(function(div) {
-        div.addEventListener('click', function() {
+    console.log('Found result divs:', allResultDivs.length);
+    
+    allResultDivs.forEach(function(div, index) {
+        console.log('Attaching click handler to item', index);
+        
+        div.addEventListener('click', function(e) {
+            console.log('=== CLICK EVENT FIRED ===');
+            console.log('Event:', e);
+            console.log('This element:', this);
             const id = this.getAttribute('data-article-id');
-            console.log('Clicking on article:', id);
+            console.log('Article ID from attribute:', id);
+            console.log('Calling loadArticle with:', id);
             loadArticle(id);
+            console.log('loadArticle called');
         });
         
         div.addEventListener('mouseenter', function() {
+            console.log('Mouse entered result item');
             this.style.backgroundColor = '#f0f7ff';
         });
         
         div.addEventListener('mouseleave', function() {
+            console.log('Mouse left result item');
             this.style.backgroundColor = 'white';
         });
     });
     
+    console.log('All event handlers attached');
     window.scrollTo(0, 0);
 }
         // Export function for adding more articles dynamically
